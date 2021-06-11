@@ -1,0 +1,9 @@
+{
+    "bitrate": 128,
+    "keyint_sec": 0,
+    "preset": "slower",
+    "profile": "",
+    "rate_control": "CBR",
+    "tune": "",
+    "use_bufsize": false
+}

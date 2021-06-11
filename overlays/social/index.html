@@ -1,0 +1,502 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Social Overlay</title>
+    <meta name="description" content="Original code : https://codepen.io/NerdOrDie/pen/vNEvee"/>
+    <style>
+        body {
+            background-color: #FFFFFF;
+        }
+
+        #popup-container {
+            width: 100%;
+            height: 60px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            overflow: hidden;
+        }
+
+        .popup {
+            width: 100%;
+            height: 60px;
+            background: #fff;
+            display: none;
+        }
+
+        .popup .left {
+            position: relative;
+            height: 60px;
+            width: 60px;
+            float: left;
+        }
+
+        .popup .left span:before {
+            font-size: 40px;
+            line-height: 60px;
+            width: 60px;
+            height: 60px;
+            content: "";
+            display: block;
+            text-align: center;
+            color: #FFF;
+        }
+
+        .popup .left .twitter:before {
+            background: #4b9bd8 url("http://nerdordie.com/wp-content/uploads/2015/11/twitter.png") no-repeat 10px 10px;
+        }
+
+        .popup .left .facebook:before {
+            background: #3a5795 url("http://nerdordie.com/wp-content/uploads/2015/11/facebook.png") no-repeat 10px 10px;
+        }
+
+        .popup .left .instagram:before {
+            background: #44749c url("http://nerdordie.com/wp-content/uploads/2015/11/instagram.png") no-repeat 10px 10px;
+        }
+
+        .popup .left .youtube:before {
+            background: #ec2727 url("http://nerdordie.com/wp-content/uploads/2015/11/youtube.png") no-repeat 10px 10px;
+        }
+
+        .popup .left .paypal:before {
+            background: #005082 url("http://nerdordie.com/wp-content/uploads/2015/11/paypal.png") no-repeat 10px 10px;
+        }
+
+        .popup .left .twitch:before {
+            background: #6542a6 url("http://nerdordie.com/wp-content/uploads/2015/11/twitch.png") no-repeat 10px 10px;
+        }
+
+        .popup .left .tumblr:before {
+            background: #324f6d url("http://nerdordie.com/wp-content/uploads/2015/11/tumblr.png") no-repeat 10px 10px;
+        }
+
+        .popup .left .patreon:before {
+            background: #e6461a url("http://nerdordie.com/wp-content/uploads/2015/11/patreon.png") no-repeat 10px 10px;
+        }
+
+        .popup .left .snapchat:before {
+            background: #fffc00 url("http://nerdordie.com/wp-content/uploads/2015/11/snapchat.png") no-repeat 10px 10px;
+        }
+
+        .popup .left .steam:before {
+            background: #000 url("http://nerdordie.com/wp-content/uploads/2015/11/steam.png") no-repeat 10px 10px;
+        }
+
+        .popup .left .xbox:before {
+            background: #117d10 url("http://nerdordie.com/wp-content/uploads/2015/11/xbox.png") no-repeat 10px 10px;
+        }
+
+        .popup .left .psn:before {
+            background: #0b266b url("http://nerdordie.com/wp-content/uploads/2015/11/psn.png") no-repeat 10px 10px;
+        }
+
+        .popup .left .origin:before {
+            background: #f05a22 url("http://nerdordie.com/wp-content/uploads/2015/11/origin.png") no-repeat 10px 10px;
+        }
+
+        .popup .left .uplay:before {
+            background: #4891cb url("http://nerdordie.com/wp-content/uploads/2015/11/uplay.png") no-repeat 10px 10px;
+        }
+
+        .popup .left .nintendo:before {
+            background: #f68b33 url("http://nerdordie.com/wp-content/uploads/2016/03/nintendo.png") no-repeat 10px 10px;
+        }
+
+        .popup .left .battlenet:before {
+            background: #000001 url("http://nerdordie.com/wp-content/uploads/2016/03/battlenet.png") no-repeat 10px 10px;
+        }
+
+        .popup .left .deviantart:before {
+            background: #05cc47 url("http://nerdordie.com/wp-content/uploads/2016/03/deviantart.png") no-repeat 10px 10px;
+        }
+
+        .popup .left .reddit:before {
+            background: #ffffff url("http://nerdordie.com/wp-content/uploads/2016/03/reddit.png") no-repeat 10px 10px;
+        }
+
+        .popup .left .gamewisp:before {
+            background: #f8a853 url("http://nerdordie.com/wp-content/uploads/2016/03/gamewisp.png") no-repeat 10px 10px;
+        }
+
+        .popup .left .playstv:before {
+            background: #35373b url("http://nerdordie.com/wp-content/uploads/2016/03/playstv.png") no-repeat 10px 10px;
+        }
+
+        .popup .left .github:before {
+            background: #ffffff url("https://img.icons8.com/fluent/40/000000/github.png") no-repeat 10px 10px;
+        }
+
+        .popup .left .soundcloud:before {
+            background: #ffffff url("https://img.icons8.com/color/40/000000/soundcloud.png") no-repeat 10px 10px;
+        }
+
+        .popup .right {
+            position: relative;
+            height: 60px;
+            width: 400px;
+            float: left;
+            color: #101010;
+            padding-left: 10px;
+            font-size: 30px;
+            line-height: 60px;
+            white-space: nowrap;
+            font-family: 'Montserrat';
+            animation: popup-text 2s 1 ease-out;
+            -webkit-animation: popup-text 2s 1 ease-out;
+        }
+
+        .popup .right span {
+            white-space: nowrap;
+        }
+
+        @keyframes popup-text {
+            0% {
+                color: rgba(16, 16, 16, 0);
+                text-indent: -10px;
+            }
+
+            40% {
+                color: rgba(16, 16, 16, 0);
+                text-indent: -10px;
+            }
+
+            50% {
+                color: #101010;
+                text-indent: 0px;
+            }
+
+            100% {
+                color: #101010;
+                text-indent: 0px;
+            }
+        }
+
+        @-webkit-keyframes popup-text {
+            0% {
+                color: rgba(16, 16, 16, 0);
+                text-indent: -10px;
+            }
+
+            40% {
+                color: rgba(16, 16, 16, 0);
+                text-indent: -10px;
+            }
+
+            50% {
+                color: #161010;
+                text-indent: 0px;
+            }
+
+            100% {
+                color: #101010;
+                text-indent: 0px;
+            }
+        }
+
+        .show-popup {
+            display: block;
+            animation: popup 1s 1 ease-out;
+            -webkit-animation: popup 1s 1 ease-out;
+        }
+
+        @keyframes popup {
+            0% {
+                width: 60px;
+                margin-top: -10px;
+                opacity: 0;
+            }
+
+            20% {
+                width: 60px;
+                margin-top: 0px;
+                opacity: 1;
+            }
+
+            45% {
+                width: 470px;
+            }
+
+            100% {
+                width: 470px;
+            }
+        }
+
+        @-webkit-keyframes popup {
+            0% {
+                width: 60px;
+                margin-top: -10px;
+                opacity: 0;
+            }
+
+            20% {
+                width: 60px;
+                margin-top: 0px;
+                opacity: 1;
+            }
+
+            45% {
+                width: 470px;
+            }
+
+            100% {
+                width: 470px;
+            }
+        }
+
+        .no-popup {
+            display: none !important;
+        }
+    </style>
+</head>
+
+<body>
+<link href="https://fonts.googleapis.com/css?family=Montserrat:700" rel="stylesheet" type="text/css">
+<div id="popup-container">
+    <div class="popup twitter-pop animate-popup" data-box="enableTwitter">
+        <div class="left">
+            <span class="twitter"></span>
+        </div>
+        <div class="right twitterUsername">
+            <span data-name="twitterUsername"></span>
+        </div>
+    </div>
+    <div class="popup facebook-pop animate-popup" data-box="enableFacebook">
+        <div class="left">
+            <span class="facebook"></span>
+        </div>
+        <div class="right facebookUsername">
+            <span data-name="facebookUsername"></span>
+        </div>
+    </div>
+    <div class="popup instagram-pop animate-popup" data-box="enableInstagram">
+        <div class="left">
+            <span class="instagram"></span>
+        </div>
+        <div class="right instagramUsername">
+            <span data-name="instagramUsername"></span>
+        </div>
+    </div>
+    <div class="popup youtube-pop animate-popup" data-box="enableYoutube">
+        <div class="left">
+            <span class="youtube"></span>
+        </div>
+        <div class="right youtubeUsername">
+            <span data-name="youtubeUsername"></span>
+        </div>
+    </div>
+    <div class="popup tumblr-pop animate-popup" data-box="enableTumblr">
+        <div class="left">
+            <span class="tumblr"></span>
+        </div>
+        <div class="right tumblrUsername">
+            <span data-name="tumblrUsername"></span>
+        </div>
+    </div>
+    <div class="popup twitch-pop animate-popup" data-box="enableTwitch">
+        <div class="left">
+            <span class="twitch"></span>
+        </div>
+        <div class="right twitchUsername">
+            <span data-name="twitchUsername"></span>
+        </div>
+    </div>
+    <div class="popup paypal-pop animate-popup" data-box="enablePaypal">
+        <div class="left">
+            <span class="paypal"></span>
+        </div>
+        <div class="right paypalUsername">
+            <span data-name="paypalUsername"></span>
+        </div>
+    </div>
+    <div class="popup patreon-pop animate-popup" data-box="enablePatreon">
+        <div class="left">
+            <span class="patreon"></span>
+        </div>
+        <div class="right patreonUsername">
+            <span data-name="patreonUsername"></span>
+        </div>
+    </div>
+    <div class="popup snapchat-pop animate-popup" data-box="enableSnapchat">
+        <div class="left">
+            <span class="snapchat"></span>
+        </div>
+        <div class="right snapchatUsername">
+            <span data-name="snapchatUsername"></span>
+        </div>
+    </div>
+    <div class="popup steam-pop animate-popup" data-box="enableSteam">
+        <div class="left">
+            <span class="steam"></span>
+        </div>
+        <div class="right steamUsername">
+            <span data-name="steamUsername"></span>
+        </div>
+    </div>
+    <div class="popup xbox-pop animate-popup" data-box="enableXbox">
+        <div class="left">
+            <span class="xbox"></span>
+        </div>
+        <div class="right xboxUsername">
+            <span data-name="xboxUsername"></span>
+        </div>
+    </div>
+    <div class="popup psn-pop animate-popup" data-box="enablePsn">
+        <div class="left">
+            <span class="psn"></span>
+        </div>
+        <div class="right psnUsername">
+            <span data-name="psnUsername"></span>
+        </div>
+    </div>
+    <div class="popup origin-pop animate-popup" data-box="enableOrigin">
+        <div class="left">
+            <span class="origin"></span>
+        </div>
+        <div class="right originUsername">
+            <span data-name="originUsername"></span>
+        </div>
+    </div>
+    <div class="popup uplay-pop animate-popup" data-box="enableUplay">
+        <div class="left">
+            <span class="uplay"></span>
+        </div>
+        <div class="right uplayUsername">
+            <span data-name="uplayUsername"></span>
+        </div>
+    </div>
+    <div class="popup nintendo-pop animate-popup" data-box="enableNintendo">
+        <div class="left">
+            <span class="nintendo"></span>
+        </div>
+        <div class="right nintendoUsername">
+            <span data-name="nintendoUsername"></span>
+        </div>
+    </div>
+    <div class="popup battlenet-pop animate-popup" data-box="enableBattleNet">
+        <div class="left">
+            <span class="battlenet"></span>
+        </div>
+        <div class="right battlenetUsername">
+            <span data-name="battlenetUsername"></span>
+        </div>
+    </div>
+    <div class="popup deviantart-pop animate-popup" data-box="enableDeviantArt">
+        <div class="left">
+            <span class="deviantart"></span>
+        </div>
+        <div class="right deviantartUsername">
+            <span data-name="deviantartUsername"></span>
+        </div>
+    </div>
+    <div class="popup reddit-pop animate-popup" data-box="enableReddit">
+        <div class="left">
+            <span class="reddit"></span>
+        </div>
+        <div class="right redditUsername">
+            <span data-name="redditUsername"></span>
+        </div>
+    </div>
+    <div class="popup gamewisp-pop animate-popup" data-box="enableGameWisp">
+        <div class="left">
+            <span class="gamewisp"></span>
+        </div>
+        <div class="right gamewispUsername">
+            <span data-name="gamewispUsername"></span>
+        </div>
+    </div>
+    <div class="popup playstv-pop animate-popup" data-box="enablePlaysTv">
+        <div class="left">
+            <span class="playstv"></span>
+        </div>
+        <div class="right playstvUsername">
+            <span data-name="playstvUsername"></span>
+        </div>
+    </div>
+    <div class="popup github-pop animate-popup" data-box="enableGithub">
+        <div class="left">
+            <span class="github"></span>
+        </div>
+        <div class="right githubUsername">
+            <span data-name="githubUsername"></span>
+        </div>
+    </div>
+    <div class="popup soundcloud-pop animate-popup" data-box="enableSoundcloud">
+        <div class="left">
+            <span class="soundcloud"></span>
+        </div>
+        <div class="right soundcloudUsername">
+            <span data-name="soundcloudUsername"></span>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+        var settings = {
+            // Simply change the name in quotes with your name
+            social: {
+
+                twitchUsername: ["https://www.twitch.tv/matyo91", "Live"],
+                twitterUsername: ["https://twitter.com/matyo91", "News"],
+                facebookUsername: null, // "https://www.facebook.com/matyo91",
+                instagramUsername: null,
+                youtubeUsername: ["https://www.youtube.com/user/matyo91", "Replay"],
+                tumblrUsername: null,
+                paypalUsername: null,
+                patreonUsername: null,
+                snapchatUsername: null,
+                steamUsername: null,
+                xboxUsername: null,
+                psnUsername: null,
+                originUsername: null,
+                uplayUsername: null,
+                nintendoUsername: null,
+                battlenetUsername: null,
+                deviantartUsername: null,
+                redditUsername: null,
+                gamewispUsername: null,
+                playstvUsername: null,
+                githubUsername: ["https://github.com/matyo91/matyo91-live", "Matyo91 Live"],
+                soundcloudUsername: null, //["https://soundcloud.com/djmatyo91", "Production"],
+            },
+
+            // Gaming Popup Options
+            popup: {
+                // Time each network animation takes in seconds
+                aTime: 32,
+            }
+        };
+
+        // Load Social Network Names
+        Array.from(document.querySelectorAll(".popup .right span")).forEach(function (el) {
+            var name = settings.social[el.dataset.name]
+            if (name !== null) {
+                el.innerText = Array.isArray(name) ? `${name[1]} ${name[0]}` : name
+                el.parentNode.parentNode.classList.add("animate-popup")
+            } else {
+                el.parentNode.parentNode.classList.remove("animate-popup")
+            }
+        });
+
+        // Animate Popup
+        var popups = Array.from(document.querySelectorAll('.animate-popup'));
+        var i = 0;
+        var pT = settings.popup.pauseTime * 1000;
+
+        function animatePopup() {
+            if (i >= popups.length) {
+                i = 0;
+            }
+            var el = popups[i]
+            el.classList.add("show-popup")
+            setTimeout(function () {
+                el.classList.remove("show-popup");
+                animatePopup()
+            }, settings.popup.aTime * 1000)
+            i++;
+        }
+
+        animatePopup();
+    })
+</script>
+</body>
+</html>
