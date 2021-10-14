@@ -130,6 +130,10 @@
             background: #ffffff url("https://img.icons8.com/color/40/000000/soundcloud.png") no-repeat 10px 10px;
         }
 
+        .popup .left .uniflow:before {
+            background: transparent url("https://github.com/matyo91/matyo91-live/raw/main/medias/uniflow.png") no-repeat 0px 0px;
+        }
+
         .popup .right {
             position: relative;
             height: 60px;
@@ -466,6 +470,15 @@
         </div>
         <div class="logo"></div>
     </div>
+    <div class="popup uniflow-pop animate-popup" data-box="enableUniflow">
+        <div class="left">
+            <span class="uniflow"></span>
+        </div>
+        <div class="right uniflowUsername">
+            <span data-name="uniflowUsername"></span>
+        </div>
+        <div class="logo"></div>
+    </div>
 </div>
 <script type="text/javascript">
     document.addEventListener("DOMContentLoaded", function () {
@@ -495,6 +508,7 @@
                 playstvUsername: null,
                 githubUsername: null, //["https://github.com/matyo91/matyo91-live", "Matyo91 Live"],
                 soundcloudUsername: null, //["https://soundcloud.com/djmatyo91", "Production"],
+                uniflowUrl: "https://uniflow.io"
             },
 
             // Gaming Popup Options
